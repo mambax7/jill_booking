@@ -1,27 +1,25 @@
 <?php
 //  ------------------------------------------------------------------------ //
-// ¥»¼Ò²Õ¥Ñ tnjaile »s§@
-// »s§@¤é´Á¡G2015-01-23
+// ï¿½ï¿½ï¿½Ò²Õ¥ï¿½ tnjaile ï¿½sï¿½@
+// ï¿½sï¿½@ï¿½ï¿½ï¿½ï¿½G2015-01-23
 // $Id:$
 // ------------------------------------------------------------------------- //
-include_once XOOPS_ROOT_PATH."/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
+include_once XOOPS_ROOT_PATH . "/modules/tadtools/language/{$xoopsConfig['language']}/modinfo_common.php";
 
-define('_MI_JILLBOOKIN_NAME','³õ¦a¹w¬ù');
-define('_MI_JILLBOOKIN_AUTHOR','³õ¦a¹w¬ù');
-define('_MI_JILLBOOKIN_CREDITS','');
-define('_MI_JILLBOOKIN_DESC','¦¹¼Ò²Õªº¥Î³~¬O´£¨Ñ³õ¦a¹w¬ùªº¼Ò²Õ');
-define('_MI_JILLBOOKIN_AUTHOR_WEB','');
-define('_MI_JILLBOOKIN_ADMENU1', "³õ¦aºÞ²z");
-define('_MI_JILLBOOKIN_ADMENU1_DESC', "³õ¦aºÞ²z");
-define("_MI_JILLBOOKIN_SMNAME2", "§å¦¸¹w¬ù");
-define("_MI_JILLBOOKIN_SMNAME3", "¹w¬ù²M³æ");
-//°Ï¶ô
-define('_MI_JB_B_TODAY_LIST_BLOCK_NAME' , '¤µ¤é³õ¦a¹w¬ùª¬ªp');
-define('_MI_JB_B_TODAY_LIST_BLOCK_DESC' , '¤µ¤é³õ¦a¹w¬ùª¬ªp°Ï¶ô (jb_b_today_list)');
-//°¾¦n³]©w
-define('_MI_JILLBOOKIN_BOOKING_GROUP' , '¥i¹w¬ù³õ¦aªÌ');
-define('_MI_JILLBOOKIN_BOOKING_GROUP_DESC' , '¥i¹w¬ù³õ¦a¤§¸s²Õ');
-define('_MI_JILLBOOKIN_CAN_CANCEL' , '¥i¨ú®ø¥L¤H¹w¬ù³õ¦aªÌ');
-define('_MI_JILLBOOKIN_CAN_CANCEL_DESC' , '¥i¨ú®ø¥L¤H¹w¬ù³õ¦a¤§¸s²Õ');
-
-?>
+define('_MI_JILLBOOKIN_NAME', 'ï¿½ï¿½ï¿½aï¿½wï¿½ï¿½');
+define('_MI_JILLBOOKIN_AUTHOR', 'ï¿½ï¿½ï¿½aï¿½wï¿½ï¿½');
+define('_MI_JILLBOOKIN_CREDITS', '');
+define('_MI_JILLBOOKIN_DESC', 'ï¿½ï¿½ï¿½Ò²Õªï¿½ï¿½Î³~ï¿½Oï¿½ï¿½ï¿½Ñ³ï¿½ï¿½aï¿½wï¿½ï¿½ï¿½ï¿½ï¿½Ò²ï¿½');
+define('_MI_JILLBOOKIN_AUTHOR_WEB', '');
+define('_MI_JILLBOOKIN_ADMENU1', "ï¿½ï¿½ï¿½aï¿½Þ²z");
+define('_MI_JILLBOOKIN_ADMENU1_DESC', "ï¿½ï¿½ï¿½aï¿½Þ²z");
+define("_MI_JILLBOOKIN_SMNAME2", "ï¿½å¦¸ï¿½wï¿½ï¿½");
+define("_MI_JILLBOOKIN_SMNAME3", "ï¿½wï¿½ï¿½ï¿½Mï¿½ï¿½");
+//ï¿½Ï¶ï¿½
+define('_MI_JB_B_TODAY_LIST_BLOCK_NAME', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½aï¿½wï¿½ï¿½ï¿½ï¿½ï¿½p');
+define('_MI_JB_B_TODAY_LIST_BLOCK_DESC', 'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½aï¿½wï¿½ï¿½ï¿½ï¿½ï¿½pï¿½Ï¶ï¿½ (jb_b_today_list)');
+//ï¿½ï¿½ï¿½nï¿½]ï¿½w
+define('_MI_JILLBOOKIN_BOOKING_GROUP', 'ï¿½iï¿½wï¿½ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½');
+define('_MI_JILLBOOKIN_BOOKING_GROUP_DESC', 'ï¿½iï¿½wï¿½ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½sï¿½ï¿½');
+define('_MI_JILLBOOKIN_CAN_CANCEL', 'ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Hï¿½wï¿½ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½');
+define('_MI_JILLBOOKIN_CAN_CANCEL_DESC', 'ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½Hï¿½wï¿½ï¿½ï¿½ï¿½ï¿½aï¿½ï¿½ï¿½sï¿½ï¿½');

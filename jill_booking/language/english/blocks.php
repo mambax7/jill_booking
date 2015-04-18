@@ -5,4 +5,6 @@
 // $Id:$
 // ------------------------------------------------------------------------- //
 
-define('_MB_JB_B_TODAY_LIST_OPT0', '秀出');
+//define('_MB_JB_B_TODAY_LIST_OPT0' , '秀出');
+
+define('_MB_JB_B_TODAY_LIST_OPT0', 'show off');

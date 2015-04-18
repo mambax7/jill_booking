@@ -1,6 +1,6 @@
 <?php
 /*
-function xoops_module_update_¼Ò²Õ¥Ø¿ý(&$module, $old_version) {
+function xoops_module_update_ï¿½Ò²Õ¥Ø¿ï¿½(&$module, $old_version) {
     GLOBAL $xoopsDB;
 
     //if(!chk_chk1()) go_update1();
@@ -8,38 +8,38 @@ function xoops_module_update_¼Ò²Õ¥Ø¿ý(&$module, $old_version) {
     return true;
 }
 
-//ÀË¬d¬YÄæ¦ì¬O§_¦s¦b
+//ï¿½Ë¬dï¿½Yï¿½ï¿½ï¿½Oï¿½_ï¿½sï¿½b
 function chk_chk1(){
   global $xoopsDB;
-  $sql="select count(`Äæ¦ì`) from ".$xoopsDB->prefix("¸ê®Æªí");
+  $sql="select count(`ï¿½ï¿½ï¿½`) from ".$xoopsDB->prefix("ï¿½ï¿½Æªï¿½");
   $result=$xoopsDB->query($sql);
   if(empty($result)) return false;
   return true;
 }
 
-//°õ¦æ§ó·s
+//ï¿½ï¿½ï¿½ï¿½ï¿½s
 function go_update1(){
   global $xoopsDB;
-  $sql="ALTER TABLE ".$xoopsDB->prefix("¸ê®Æªí")." ADD `Äæ¦ì` smallint(5) NOT NULL";
+  $sql="ALTER TABLE ".$xoopsDB->prefix("ï¿½ï¿½Æªï¿½")." ADD `ï¿½ï¿½ï¿½` smallint(5) NOT NULL";
   $xoopsDB->queryF($sql) or redirect_header(XOOPS_URL,3,  mysql_error());
 
   return true;
 }
 
 
-//«Ø¥ß¥Ø¿ý
+//ï¿½Ø¥ß¥Ø¿ï¿½
 function mk_dir($dir=""){
-  //­YµL¥Ø¿ý¦WºÙ¨q¥XÄµ§i°T®§
+  //ï¿½Yï¿½Lï¿½Ø¿ï¿½ï¿½Wï¿½Ù¨qï¿½XÄµï¿½iï¿½Tï¿½ï¿½
   if(empty($dir))return;
-  //­Y¥Ø¿ý¤£¦s¦bªº¸Ü«Ø¥ß¥Ø¿ý
+  //ï¿½Yï¿½Ø¿ï¿½ï¿½ï¿½ï¿½sï¿½bï¿½ï¿½ï¿½Ü«Ø¥ß¥Ø¿ï¿½
   if (!is_dir($dir)) {
     umask(000);
-    //­Y«Ø¥ß¥¢±Ñ¨q¥XÄµ§i°T®§
+    //ï¿½Yï¿½Ø¥ß¥ï¿½ï¿½Ñ¨qï¿½XÄµï¿½iï¿½Tï¿½ï¿½
     mkdir($dir, 0777);
   }
 }
 
-//«þ¨©¥Ø¿ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½
 function full_copy( $source="", $target=""){
   if ( is_dir( $source ) ){
     @mkdir( $target );
@@ -93,5 +93,4 @@ function delete_directory($dirname) {
   return true;
 }
 
-*/
-?>
+*/;

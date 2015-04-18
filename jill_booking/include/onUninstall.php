@@ -1,16 +1,16 @@
 <?php
 /*
-function xoops_module_uninstall_¼Ò²Õ¥Ø¿ý(&$module) {
+function xoops_module_uninstall_ï¿½Ò²Õ¥Ø¿ï¿½(&$module) {
   GLOBAL $xoopsDB;
   $date=date("Ymd");
 
-  rename(XOOPS_ROOT_PATH."/uploads/¼Ò²Õ¥Ø¿ý",XOOPS_ROOT_PATH."/uploads/¼Ò²Õ¥Ø¿ý_bak_{$date}");
+  rename(XOOPS_ROOT_PATH."/uploads/ï¿½Ò²Õ¥Ø¿ï¿½",XOOPS_ROOT_PATH."/uploads/ï¿½Ò²Õ¥Ø¿ï¿½_bak_{$date}");
 
   return true;
 }
 
 
-//§R°£¥Ø¿ý
+//ï¿½Rï¿½ï¿½ï¿½Ø¿ï¿½
 function delete_directory($dirname) {
   if (is_dir($dirname))
     $dir_handle = opendir($dirname);
@@ -29,7 +29,7 @@ function delete_directory($dirname) {
   return true;
 }
 
-//«þ¨©¥Ø¿ý
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ø¿ï¿½
 function full_copy( $source="", $target=""){
   if ( is_dir( $source ) ){
     @mkdir( $target );
@@ -51,5 +51,4 @@ function full_copy( $source="", $target=""){
     copy( $source, $target );
   }
 }
-*/
-?>
+*/;
