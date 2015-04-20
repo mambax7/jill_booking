@@ -223,9 +223,9 @@ function show_one_jill_booking_item($jbi_sn = '')
 
 
     //將是/否選項轉換為圖示
-    $jbi_enable = ($jbi_enable === 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+    $jbi_enable = ($jbi_enable == 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
-    $jbi_approval = ($jbi_approval === 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+    $jbi_approval = ($jbi_approval == 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
     //過濾讀出的變數值
     $jbi_start = $myts->htmlSpecialChars($jbi_start);
     $jbi_end   = $myts->htmlSpecialChars($jbi_end);
@@ -282,9 +282,9 @@ function list_jill_booking_item()
         }
 
         //將是/否選項轉換為圖示
-        $jbi_enable = ($jbi_enable === 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+        $jbi_enable = ($jbi_enable == 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
-        $jbi_approval = ($jbi_approval === 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
+        $jbi_approval = ($jbi_approval == 1) ? '<img src="../images/yes.gif" alt="' . _YES . '" title="' . _YES . '">' : '<img src="../images/no.gif" alt="' . _NO . '" title="' . _NO . '">';
 
         //過濾讀出的變數值
         $jbi_start = $myts->htmlSpecialChars($jbi_start);

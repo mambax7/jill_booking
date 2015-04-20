@@ -25,18 +25,27 @@ define('_MI_JILLBOOKIN_CAN_CANCEL_DESC' , '可取消他人預約場地之群組'
 
 */
 
-//define('_MI_JILLBOOKIN_NAME', "Forum");
 define('_MI_JILLBOOKIN_NAME', 'Venue Management');
 define('_MI_JILLBOOKIN_AUTHOR', 'Jillian');
 define('_MI_JILLBOOKIN_CREDITS', '');
-define('_MI_JILLBOOKIN_DESC', 'The purpose of this module is to provide a venue booking modules');
+define('_MI_JILLBOOKIN_DESC', 'The purpose of this module is to provide a venue booking module');
 define('_MI_JILLBOOKIN_AUTHOR_WEB', '');
 define('_MI_JILLBOOKIN_ADMENU1', 'Venue Management');
 define('_MI_JILLBOOKIN_ADMENU1_DESC', 'Venue Management');
-define("_MI_JILLBOOKIN_SMNAME2", 'Batch reserve');
+define("_MI_JILLBOOKIN_SMNAME2", 'Batch reservation');
 define("_MI_JILLBOOKIN_SMNAME3", 'Reservation list');
 // Preferences
-define('_MI_JILLBOOKIN_BOOKING_GROUP', 'Who can make an appointment venue');
-define('_MI_JILLBOOKIN_BOOKING_GROUP_DESC', 'Can be booked venues group');
-define('_MI_JILLBOOKIN_CAN_CANCEL', 'Cancel reservation site by others');
-define('_MI_JILLBOOKIN_CAN_CANCEL_DESC', 'Cancel another appointment venues group');
+define('_MI_JILLBOOKIN_BOOKING_GROUP', 'Who can make a venue reservation?');
+define('_MI_JILLBOOKIN_BOOKING_GROUP_DESC', 'These groups can make reservations');
+define('_MI_JILLBOOKIN_CAN_CANCEL', 'Who can cancel reservation made by others');
+define('_MI_JILLBOOKIN_CAN_CANCEL_DESC', 'These groups can cancel reservations made by others');
+
+//1.1 (mamba)
+
+// The name of this module
+define('_MI_JILLBOOKIN_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_JILLBOOKIN_HELP_HEADER', __DIR__.'/help/helpheader.html');
+define('_MI_JILLBOOKIN_BACK_2_ADMIN',"Back to Administration of ");
+
+//help
+define('_MI_JILLBOOKIN_HELP_OVERVIEW',"Overview");

@@ -276,7 +276,8 @@ function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "")
             $$k = $v;
         }
         if ($jb_waiting > $seed_waiting) {
-            $jb_waiting -= 1;
+//            $jb_waiting = $jb_waiting-1;
+            --$jb_waiting;
             $sql        = "update " . $xoopsDB->prefix("jill_booking_date") . " set `jb_waiting`='{$jb_waiting}' where `jb_sn`='{$jb_sn}' and `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}' ";
             $xoopsDB->queryF($sql) or die(_TAD_SORT_FAIL . " (" . date("Y-m-d H:i:s") . ")" . $sql);
         }

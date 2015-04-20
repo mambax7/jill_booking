@@ -20,15 +20,15 @@ $modversion['dirname']     = basename( __DIR__ );
 
 
 //---模組狀態資訊---//
-$modversion['status_version']      = '1.0';
+$modversion['status_version']      = '1.1';
 $modversion['release_date']        = '2015-04-15';
 $modversion['module_website_url']  = '';
 $modversion['module_website_name'] = _MI_JILLBOOKIN_AUTHOR_WEB;
-$modversion['module_status']       = 'release';
+$modversion['module_status']       = 'beta';
 $modversion['author_website_url']  = '';
 $modversion['author_website_name'] = _MI_JILLBOOKIN_AUTHOR_WEB;
-$modversion['min_php']             = 5.2;
-$modversion['min_xoops']           = '2.5';
+$modversion['min_php']             = '5.3.7';
+$modversion['min_xoops']           = '2.5.7';
 
 
 //---paypal資訊---//

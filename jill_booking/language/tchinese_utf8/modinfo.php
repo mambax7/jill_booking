@@ -21,3 +21,13 @@ define('_MI_JILLBOOKIN_BOOKING_GROUP', '可預約場地者');
 define('_MI_JILLBOOKIN_BOOKING_GROUP_DESC', '可預約場地之群組');
 define('_MI_JILLBOOKIN_CAN_CANCEL', '可取消他人預約場地者');
 define('_MI_JILLBOOKIN_CAN_CANCEL_DESC', '可取消他人預約場地之群組');
+
+//1.1 (mamba)
+
+// The name of this module
+define('_MI_JILLBOOKIN_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_JILLBOOKIN_HELP_HEADER', __DIR__.'/help/helpheader.html');
+define('_MI_JILLBOOKIN_BACK_2_ADMIN',"Back to Administration of ");
+
+//help
+define('_MI_JILLBOOKIN_HELP_OVERVIEW',"Overview");

@@ -108,7 +108,7 @@ function list_jill_booking_time($jbi_sn = "")
         $w_arr                             = explode(',', $jbt_week);
         for ($j = 0; $j <= 7; $j++) {
             $name = "w{$j}";
-            $pic  = in_array($j, $w_arr, true) ? "yes.gif" : "no.gif";
+            $pic  = in_array($j, $w_arr) ? "yes.gif" : "no.gif";
 
             $all_content[$i][$name] = "<img src='../images/{$pic}' id='{$jbt_sn}_{$j}' onClick=\"change_enable($jbt_sn,$j);\" style='cursor: pointer;'>";
         }
@@ -119,7 +119,7 @@ function list_jill_booking_time($jbi_sn = "")
     //刪除確認的JS
 
     $xoopsTpl->assign('item', $item);
-    $xoopsTpl->assign('bar', $bar);
+//    $xoopsTpl->assign('bar', $bar);
     $xoopsTpl->assign('action', $_SERVER['PHP_SELF']);
     $xoopsTpl->assign('isAdmin', $isAdmin);
     $xoopsTpl->assign('all_content', $all_content);
@@ -213,7 +213,7 @@ function copy_time($jbi_sn = "", $to_jbi_sn = "")
 function import_time($jbi_sn = "", $type = "")
 {
     global $xoopsDB, $xoopsTpl;
-    if ($type === '18') {
+    if ($type == '18') {
         for ($i = 1; $i <= 8; $i++) {
             $jbt_title = sprintf(_MA_JILLBOOKIN_N_TIME, $i);
             $sql       = "insert into " . $xoopsDB->prefix("jill_booking_time") . "
@@ -221,7 +221,7 @@ function import_time($jbi_sn = "", $type = "")
       values('{$jbi_sn}' , '{$jbt_title}' , $i , '1,2,3,4,5')";
             $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
         }
-    } elseif ($type === 'apm') {
+    } elseif ($type == 'apm') {
         $apm_arr[1] = _MA_JILLBOOKIN_AM;
         $apm_arr[2] = _MA_JILLBOOKIN_PM;
         for ($i = 1; $i <= 2; $i++) {
@@ -246,9 +246,9 @@ function change_enable($jbt_sn = "", $week = "")
     $time     = get_jill_booking_time($jbt_sn);
     $jbt_week = (string)$time['jbt_week'];
     $week_arr = explode(',', $jbt_week);
-    if (in_array($week, $week_arr, true)) {
+    if (in_array($week, $week_arr)) {
         foreach ($week_arr as $w) {
-            if ($w !== $week) {
+            if ($w != $week) {
                 $new_week[] = $w;
             }
         }

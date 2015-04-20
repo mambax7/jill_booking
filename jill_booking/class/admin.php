@@ -174,7 +174,7 @@ class ModuleAdmin
             $ret .= $this->_itemLabel[$i]['title'];
             $ret .= "</legend>\n";
             foreach (array_keys($this->_itemLineLabel) as $k) {
-                if ($this->_itemLineLabel[$k]['label'] === $this->_itemLabel[$i]['title']) {
+                if ($this->_itemLineLabel[$k]['label'] == $this->_itemLabel[$i]['title']) {
                     $ret .= $this->_itemLineLabel[$k]['line'];
                     $ret .= "<br />";
                 }
@@ -284,7 +284,7 @@ class ModuleAdmin
         $path = XOOPS_URL . '/modules/' . $this->_obj->getVar('dirname') . "/";
         $this->_obj->loadAdminMenu();
         foreach (array_keys($this->_obj->adminmenu) as $i) {
-            if ($this->_obj->adminmenu[$i]['link'] === "admin/" . $menu) {
+            if ($this->_obj->adminmenu[$i]['link'] == "admin/" . $menu) {
                 $ret = "<div class=\"CPbigTitle\" style=\"background-image: url(" . $path . $this->_obj->adminmenu[$i]['icon'] . "); background-repeat: no-repeat; background-position: left; padding-left: 50px;\">
                         <strong>" . $this->_obj->adminmenu[$i]['title'] . "</strong></div><br />";
             }

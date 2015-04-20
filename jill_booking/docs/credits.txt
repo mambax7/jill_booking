@@ -1,4 +1,4 @@
-Read Me First
+Credits
 =============
 
-Please make sure that you download the XOOPS Icon Set, and upload it to uploads/images directory
+This module has been originally developed by Jillian ('tnjaile@gmail.com') from XOOPS Taiwan

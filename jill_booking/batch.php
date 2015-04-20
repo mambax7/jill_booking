@@ -148,8 +148,10 @@ function list_jill_booking($jb_sn = "", $jbi_sn = "")
                         $dateweek[$i]['jb_exit']                = $jb_exit;
                     } else {
                         $dateweek[$i]['waitingArr'][0]['name'] = "<span style='color:#D44950'><i class='fa fa-check'></i></span>";
-                        for ($j = 1; $j < $maxwaiting; $j++) {
-                            $dateweek[$i]['waitingArr'][$j]['name'] = "";
+//                      for ($j = 1; $j < $maxwaiting; $j++) {
+//                          $dateweek[$i]['waitingArr'][$j]['name'] = "";
+                        for ($m = 1; $m < $maxwaiting; $m++) {
+                            $dateweek[$i]['waitingArr'][$m]['name'] = '';
                         }
                         $dateweek[$i]['jb_exit'] = 0;
                     }
