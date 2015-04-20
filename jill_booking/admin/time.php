@@ -22,7 +22,7 @@ function jill_booking_time_max_sort($jbi_sn = "")
 {
     global $xoopsDB;
     $sql = "select max(`jbt_sort`) from `" . $xoopsDB->prefix("jill_booking_time") . "` where jbi_sn=$jbi_sn ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($sort) = $xoopsDB->fetchRow($result);
     return ++$sort;
 }
@@ -41,7 +41,7 @@ function insert_jill_booking_time()
     $sql      = "insert into `" . $xoopsDB->prefix("jill_booking_time") . "`
   (`jbi_sn` , `jbt_title` , `jbt_sort`,`jbt_week`)
   values('{$_POST['jbi_sn']}' , '{$_POST['jbt_title']}' , '{$jbt_sort}','{$week}')";
-    $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
     //取得最後新增資料的流水編號
     $jbt_sn = $xoopsDB->getInsertId();
@@ -60,7 +60,7 @@ function delete_jill_booking_time($jbt_sn = "")
         return;
     }
     $sql = "delete from `" . $xoopsDB->prefix("jill_booking_time") . "` where `jbt_sn` = '{$jbt_sn}'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 }
 
 //列出所有jill_booking_time資料
@@ -82,7 +82,7 @@ function list_jill_booking_time($jbi_sn = "")
     $myts =& MyTextSanitizer::getInstance();
     $sql  = "select * from `" . $xoopsDB->prefix("jill_booking_time") . "`
           where `jbi_sn`='$jbi_sn' order by `jbt_sort`";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $total       = $xoopsDB->getRowsNum($result);
     $all_content = "";
     $i           = 0;
@@ -150,7 +150,7 @@ function list_jill_booking_time($jbi_sn = "")
     $i          = 0;
     $place_time = "";
     $sql        = "select a.* , count(b.jbt_sn) as counter from `" . $xoopsDB->prefix("jill_booking_item") . "` as a join `" . $xoopsDB->prefix("jill_booking_time") . "` as b on a.jbi_sn=b.jbi_sn where a.jbi_enable='1' group by b.jbi_sn";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     while ($data = $xoopsDB->fetchArray($result)) {
         $data['jbi_link'] = sprintf(_MA_JILLBOOKIN_IMPORT_PLACE, $data['jbi_title'], $data['counter']);
         $place_time[$i]   = $data;
@@ -170,7 +170,7 @@ function get_booking_times($jbt_sn = "")
     global $xoopsDB;
 
     $sql = "select count(*) from " . $xoopsDB->prefix("jill_booking_date") . " where jbt_sn='{$jbt_sn}' ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($all) = $xoopsDB->fetchRow($result);
     return $all;
 }
@@ -186,7 +186,7 @@ function copy_time($jbi_sn = "", $to_jbi_sn = "")
 
     $sql = "select * from " . $xoopsDB->prefix("jill_booking_time") . " where jbi_sn='{$jbi_sn}' ";
 
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $jbt_sn,$jbi_sn,$jbt_title,$jbt_sort
         foreach ($all as $k => $v) {
@@ -201,7 +201,7 @@ function copy_time($jbi_sn = "", $to_jbi_sn = "")
     $sql = "insert into " . $xoopsDB->prefix("jill_booking_time") . "
   (`jbi_sn` , `jbt_title` , `jbt_sort`,`jbt_week`)
   values{$ins_sql}";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 }
 
 
@@ -219,7 +219,7 @@ function import_time($jbi_sn = "", $type = "")
             $sql       = "insert into " . $xoopsDB->prefix("jill_booking_time") . "
       (`jbi_sn` , `jbt_title` , `jbt_sort`,`jbt_week`)
       values('{$jbi_sn}' , '{$jbt_title}' , $i , '1,2,3,4,5')";
-            $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+            $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
         }
     } elseif ($type == 'apm') {
         $apm_arr[1] = _MA_JILLBOOKIN_AM;
@@ -229,7 +229,7 @@ function import_time($jbi_sn = "", $type = "")
             $sql       = "insert into " . $xoopsDB->prefix("jill_booking_time") . "
      (`jbi_sn` , `jbt_title` , `jbt_sort`,`jbt_week`)
      values('{$jbi_sn}' , '{$jbt_title}' , $i , '1,2,3,4,5')";
-            $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+            $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
         }
     }
 }
@@ -262,7 +262,7 @@ function change_enable($jbt_sn = "", $week = "")
     }
 
     $sql = "update " . $xoopsDB->prefix("jill_booking_time") . " set `jbt_week`='{$new_week}' where jbt_sn='{$jbt_sn}'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     return $new_pic;
 }
 
@@ -276,7 +276,7 @@ function save_jbt_title($jbt_sn)
     $jbt_title = $myts->addSlashes($_POST['value']);
     $sql       = "update `" . $xoopsDB->prefix("jill_booking_time") . "` set `jbt_title` = '{$jbt_title}'
   where `jbt_sn` = '$jbt_sn'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 }
 
 /*-----------執行動作判斷區----------*/

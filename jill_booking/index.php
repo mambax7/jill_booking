@@ -72,7 +72,7 @@ function booking_table($jbi_sn = "", $getdate = "")
                             $content = $uid_name;
                             $color   = "#959595";
                         }
-                    } elseif (($start <= $item_date and $end >= $item_date) or $end == 0) {
+                    } elseif (($start <= $item_date && $end >= $item_date) || $end == 0) {
                         //可預約期間
                         if (strpos($jbt_week, (string)$wk) !== false) {
                             if (empty($jbArr['jb_sn'])) {
@@ -87,7 +87,7 @@ function booking_table($jbi_sn = "", $getdate = "")
                                     $color   = "#959595";
                                 }
                             } else {
-                                if ($uid == $jbArr['jb_uid'] or $can_cancel) {
+                                if ($uid == $jbArr['jb_uid'] || $can_cancel) {
                                     $content = delete_booking_icon($t, $wk, $time['jbt_sn'], $weekinfo['d'], $jbi_sn) . $usershtml;
                                     $color   = "#000000";
                                 } else {
@@ -184,7 +184,7 @@ function booking_users($jbt_sn = "", $jb_date = "")
         left join " . $xoopsDB->prefix("users") . " as c on b.`jb_uid`=c.`uid`
         where a.`jbt_sn`='{$jbt_sn}' and a.`jb_date`='{$jb_date}' order by a.`jb_waiting` ";
     //die($sql);
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $totalnum  = $xoopsDB->getRowsNum($result);
     $usershtml = "";
     if ($totalnum > 1) {
@@ -215,12 +215,12 @@ function get_bookingArr($jbt_sn = "", $jb_date = "")
         return;
     }
     $uid   = $xoopsUser->uid();
-    $where = ($can_cancel or $isAdmin) ? "where a.`jbt_sn`='{$jbt_sn}' and a.`jb_date`='{$jb_date}' and a.`jb_status`='1' " : "where a.`jbt_sn`='{$jbt_sn}' and a.`jb_date`='{$jb_date}' and a.`jb_status`='1' and b.`jb_uid`='{$uid}'";
+    $where = ($can_cancel || $isAdmin) ? "where a.`jbt_sn`='{$jbt_sn}' and a.`jb_date`='{$jb_date}' and a.`jb_status`='1' " : "where a.`jbt_sn`='{$jbt_sn}' and a.`jb_date`='{$jb_date}' and a.`jb_status`='1' and b.`jb_uid`='{$uid}'";
 
     $sql = "select a.`jb_waiting`,b.* from " . $xoopsDB->prefix("jill_booking_date") . " as a
   join " . $xoopsDB->prefix("jill_booking") . " as b on a.`jb_sn`=b.`jb_sn` $where order by a.`jb_waiting`  ";
     //die($sql);
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = $xoopsDB->fetchArray($result);
     //die(var_export($data));
     return $data;
@@ -235,7 +235,7 @@ function get_bookingArr($jbt_sn = "", $jb_date = "")
 function delete_booking($jbt_sn = "", $jb_date = "", $jbi_sn = "")
 {
     global $xoopsDB, $isAdmin;
-    if (empty($jbt_sn) or empty($jb_date)) {
+    if (empty($jbt_sn) || empty($jb_date)) {
         return;
     }
     $bookingArr = get_bookingArr($jbt_sn, $jb_date);
@@ -258,19 +258,19 @@ function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "")
 {
     global $xoopsDB, $isAdmin;
 
-    if (empty($jb_sn) or empty($jb_date) or empty($jbt_sn)) {
+    if (empty($jb_sn) || empty($jb_date) || empty($jbt_sn)) {
         return;
     }
     $sql = "select `jb_waiting` from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jb_sn`='{$jb_sn}' and `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}' ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($seed_waiting) = $xoopsDB->fetchRow($result);
 
     $sql = "delete from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jb_sn`='{$jb_sn}' and `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}'";
     //die($sql);
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     //更新jb_waiting
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}' ";
-    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     while ($all = $xoopsDB->fetchArray($result)) {
         foreach ($all as $k => $v) {
             $$k = $v;
@@ -279,7 +279,7 @@ function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "")
 //            $jb_waiting = $jb_waiting-1;
             --$jb_waiting;
             $sql        = "update " . $xoopsDB->prefix("jill_booking_date") . " set `jb_waiting`='{$jb_waiting}' where `jb_sn`='{$jb_sn}' and `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}' ";
-            $xoopsDB->queryF($sql) or die(_TAD_SORT_FAIL . " (" . date("Y-m-d H:i:s") . ")" . $sql);
+            $xoopsDB->queryF($sql) || die(_TAD_SORT_FAIL . " (" . date("Y-m-d H:i:s") . ")" . $sql);
         }
     }
 }
@@ -294,14 +294,14 @@ function delete_jill_booking_week($jb_sn = "", $jb_date = "", $jbt_sn = "")
 {
     global $xoopsDB, $isAdmin;
 
-    if (empty($jb_sn) or empty($jb_date) or empty($jbt_sn)) {
+    if (empty($jb_sn) || empty($jb_date) || empty($jbt_sn)) {
         return;
     }
 
     $jb_week = date("w", strtotime($jb_date));
 
     $sql = "delete from `" . $xoopsDB->prefix("jill_booking_week") . "` where `jb_sn`='{$jb_sn}' and `jb_week`='{$jb_week}' and `jbt_sn` = '{$jbt_sn}'";
-    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 }
 
 /*-----------執行動作判斷區----------*/
