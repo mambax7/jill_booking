@@ -63,7 +63,7 @@
                     <{foreach from=$weekArr key=wk item=week}>
 
                     <td>
-                        <div id="submit<{$t}>_<{$wk}>" style='text-align: center; vertical-align: middle; color:<{$bookingArr.$t.$wk.color;}>;'>
+                        <div id="submit<{$t}>_<{$wk}>" style='text-align: center; vertical-align: middle; color:<{$bookingArr.$t.$wk.color}>;'>
                             <{if $bookingArr.$t.$wk.status}>
                             <button type='button' class='btn btn-info'
                                     onclick="<{$bookingArr.$t.$wk.status.func}>('<{$t}>' , '<{$wk}>' , '<{$bookingArr.$t.$wk.status.time}>','<{$bookingArr.$t.$wk.status.weekinfo}>','<{$bookingArr.$t.$wk.status.jbi_sn}>')"><i class='fa fa-pencil'></i>
