@@ -18,7 +18,7 @@ function jb_b_today_list($options)
     //{$options[0]} : 秀出
     $block['options0'] = $options[0];
     $sql               = "select * from `" . $xoopsDB->prefix("jill_booking") . "` order by `jb_start_date` desc";
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $content = '';
     $i       = 0;
     while ($all = $xoopsDB->fetchArray($result)) {

@@ -22,7 +22,7 @@ function jill_booking_time_max_sort($jbi_sn = "")
 {
     global $xoopsDB;
     $sql = "select max(`jbt_sort`) from `" . $xoopsDB->prefix("jill_booking_time") . "` where jbi_sn=$jbi_sn ";
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($sort) = $xoopsDB->fetchRow($result);
     return ++$sort;
 }
@@ -82,7 +82,7 @@ function list_jill_booking_time($jbi_sn = "")
     $myts =& MyTextSanitizer::getInstance();
     $sql  = "select * from `" . $xoopsDB->prefix("jill_booking_time") . "`
           where `jbi_sn`='$jbi_sn' order by `jbt_sort`";
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $total       = $xoopsDB->getRowsNum($result);
     $all_content = "";
     $i           = 0;
@@ -150,7 +150,7 @@ function list_jill_booking_time($jbi_sn = "")
     $i          = 0;
     $place_time = "";
     $sql        = "select a.* , count(b.jbt_sn) as counter from `" . $xoopsDB->prefix("jill_booking_item") . "` as a join `" . $xoopsDB->prefix("jill_booking_time") . "` as b on a.jbi_sn=b.jbi_sn where a.jbi_enable='1' group by b.jbi_sn";
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     while ($data = $xoopsDB->fetchArray($result)) {
         $data['jbi_link'] = sprintf(_MA_JILLBOOKIN_IMPORT_PLACE, $data['jbi_title'], $data['counter']);
         $place_time[$i]   = $data;
@@ -170,7 +170,7 @@ function get_booking_times($jbt_sn = "")
     global $xoopsDB;
 
     $sql = "select count(*) from " . $xoopsDB->prefix("jill_booking_date") . " where jbt_sn='{$jbt_sn}' ";
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($all) = $xoopsDB->fetchRow($result);
     return $all;
 }
@@ -186,7 +186,7 @@ function copy_time($jbi_sn = "", $to_jbi_sn = "")
 
     $sql = "select * from " . $xoopsDB->prefix("jill_booking_time") . " where jbi_sn='{$jbi_sn}' ";
 
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     while ($all = $xoopsDB->fetchArray($result)) {
         //以下會產生這些變數： $jbt_sn,$jbi_sn,$jbt_title,$jbt_sort
         foreach ($all as $k => $v) {
