@@ -190,7 +190,7 @@ function get_jbwaiting($jbt_sn = "", $jb_date = "")
           join `" . $xoopsDB->prefix("jill_booking") . "` as b on a.jb_sn=b.jb_sn
           where a.jbt_sn=$jbt_sn and a.jb_date='{$jb_date}' order by a.jb_waiting ";
     //die($sql);
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = "";
     $i    = 0;
     while (list($jb_waiting, $jb_uid) = $xoopsDB->fetchRow($result)) {
@@ -214,7 +214,7 @@ function get_maxwaiting_byrange($jb_start_date = "", $jb_end_date = "", $str = "
     //die($str);
     $sql = "select max(`jb_waiting`) from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jbt_sn` in({$str}) and (`jb_date` between '{$jb_start_date}' and '{$jb_end_date}' ) ";
     //die($sql);
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($max) = $xoopsDB->fetchRow($result);
     return $max;
 }
@@ -231,7 +231,7 @@ function get_booking_weekArr($jb_sn = "")
         return;
     }
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking_week") . "` where `jb_sn` = '{$jb_sn}'";
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = "";
     $i    = 0;
     while ($all = $xoopsDB->fetchArray($result)) {

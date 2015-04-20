@@ -29,7 +29,7 @@ function jill_booking_list()
     $sql     = $PageBar['sql'];
     $total   = $PageBar['total'];
 
-    $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
 
     $all_content = "";
@@ -88,10 +88,10 @@ function delete_bookinglist($jb_sn = "")
     if ($uid == $bookingArr['jb_uid']) {
         //刪除jill_booking_date、jill_booking、jill_booking_week
         $sql = "delete from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jb_sn` = '{$jb_sn}'";
-        $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+        $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
         $sql = "delete from `" . $xoopsDB->prefix("jill_booking_week") . "` where `jb_sn` = '{$jb_sn}'";
-        $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+        $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
         delete_jill_booking($jb_sn);
     }

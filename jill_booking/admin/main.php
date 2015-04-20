@@ -133,7 +133,7 @@ function insert_jill_booking_item()
     $sql = "insert into `" . $xoopsDB->prefix("jill_booking_item") . "`
   (`jbi_title`,`jbi_desc` , `jbi_sort` ,`jbi_start` , `jbi_end`, `jbi_enable`, `jbi_approval` )
   values( '{$_POST['jbi_title']}' , '{$_POST['jbi_desc']}', '{$_POST['jbi_sort']}'  , '{$_POST['jbi_start']}' , '{$_POST['jbi_end']}' , '{$_POST['jbi_enable']}','{$_POST['jbi_approval']}' )";
-    $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
     //取得最後新增資料的流水編號
     $jbi_sn = $xoopsDB->getInsertId();
@@ -176,7 +176,7 @@ function update_jill_booking_item($jbi_sn = '')
    `jbi_enable` = '{$_POST['jbi_enable']}',
    `jbi_approval` = '{$_POST['jbi_approval']}'
   where `jbi_sn` = '$jbi_sn'";
-    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 
 
     return $jbi_sn;
@@ -193,7 +193,7 @@ function delete_jill_booking_item($jbi_sn = '')
         return;
     }
     $sql = "delete from `" . $xoopsDB->prefix("jill_booking_item") . "` where `jbi_sn` = '{$jbi_sn}'";
-    $xoopsDB->queryF($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
+    $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
 }
 
 //以流水號秀出某筆jill_booking_item資料內容
