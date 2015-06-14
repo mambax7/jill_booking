@@ -13,8 +13,7 @@ $end_date   = "2015-03-31";
  * @param string $end_date
  * @return array
  */
-function getdateArr($seed_weekday = "", $start_date = "", $end_date = "")
-{
+function getdateArr($seed_weekday = "", $start_date = "", $end_date = "") {
     list($y, $m, $d) = explode("-", $start_date);
     $now = 0;
     $end = strtotime($end_date);
@@ -24,8 +23,9 @@ function getdateArr($seed_weekday = "", $start_date = "", $end_date = "")
         if (in_array(date('w', $now), $seed_weekday)) {
             $date_arr[] = date("Y-m-d", $now);
         }
-        $i++;
+        ++$i;
     }
+
     return $date_arr;
 }
 
@@ -35,7 +35,7 @@ $sunday    = strtotime('-' . ($week_days) . ' days');
 echo(date('Y-m-d H:i:s', strtotime("last Sunday")));
 echo(date('Y-m-d H:i:s', strtotime("Sunday")));
 echo(date('Y-m-d H:i:s', strtotime("next Sunday")))
-//$last_sunday = date('Y-m-d H:i:s', strtotime('-1 week', $sunday));
-//die("fds".$last_monday);
+    //$last_sunday = date('Y-m-d H:i:s', strtotime('-1 week', $sunday));
+    //die("fds".$last_monday);
     //var_dump(getdateArr(array("4"),$start_date,$end_date));
 ;

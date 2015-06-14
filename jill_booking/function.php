@@ -11,15 +11,13 @@ if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php")) {
 }
 include_once XOOPS_ROOT_PATH . "/modules/tadtools/tad_function.php";
 
-
 /********************* 資料庫函數 ********************
  * @param string $jbi_sn
  * @param string $jbi_enable
  * @return array|void
  */
 //以流水號取得某筆jill_booking_item資料
-function get_jill_booking_item($jbi_sn = "", $jbi_enable = "")
-{
+function get_jill_booking_item($jbi_sn = "", $jbi_enable = "") {
     global $xoopsDB;
     if (empty($jbi_sn)) {
         return;
@@ -29,6 +27,7 @@ function get_jill_booking_item($jbi_sn = "", $jbi_enable = "")
     //die($sql);
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = $xoopsDB->fetchArray($result);
+
     return $data;
 }
 
@@ -37,8 +36,7 @@ function get_jill_booking_item($jbi_sn = "", $jbi_enable = "")
  * @param string $def_jbi_sn
  * @return string
  */
-function get_jill_booking_time_options($def_jbi_sn = "")
-{
+function get_jill_booking_time_options($def_jbi_sn = "") {
     global $xoopsDB, $xoopsModule;
 
     $sql = "select jbi_sn,jbi_title from `" . $xoopsDB->prefix("jill_booking_item") . "` where jbi_enable='1' and ((NOW() between `jbi_start` and `jbi_end`) or  (TO_DAYS(NOW()) - TO_DAYS(`jbi_start`) >=0 and `jbi_end` IS NULL))  order by jbi_sort";
@@ -64,8 +62,7 @@ function get_jill_booking_time_options($def_jbi_sn = "")
  * @param string $jb_date
  * @return string
  */
-function get_booking_uid($jbt_sn = "", $jb_date = "")
-{
+function get_booking_uid($jbt_sn = "", $jb_date = "") {
     global $xoopsDB, $xoopsModule;
 
     $sql = "select b.jb_sn,b.jb_uid from " . $xoopsDB->prefix("jill_booking_date") . " as a
@@ -78,6 +75,7 @@ function get_booking_uid($jbt_sn = "", $jb_date = "")
     $data           = "";
     $data['jb_sn']  = $jb_sn;
     $data['jb_uid'] = $jb_uid;
+
     return $data;
 }
 
@@ -86,8 +84,7 @@ function get_booking_uid($jbt_sn = "", $jb_date = "")
  * @param string $jb_sn
  * @return array|void
  */
-function get_jill_booking($jb_sn = "")
-{
+function get_jill_booking($jb_sn = "") {
     global $xoopsDB;
     if (empty($jb_sn)) {
         return;
@@ -95,6 +92,7 @@ function get_jill_booking($jb_sn = "")
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking") . "` where `jb_sn` = '{$jb_sn}'";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = $xoopsDB->fetchArray($result);
+
     return $data;
 }
 
@@ -103,8 +101,7 @@ function get_jill_booking($jb_sn = "")
  * @param string $jbi_sn
  * @return string
  */
-function get_bookingtime_jbisn($jbi_sn = "")
-{
+function get_bookingtime_jbisn($jbi_sn = "") {
     global $xoopsDB;
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking_time") . "` where jbi_sn=$jbi_sn order by `jbt_sort`";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
@@ -122,6 +119,7 @@ function get_bookingtime_jbisn($jbi_sn = "")
         $data[$i]['jbt_week']  = $jbt_week;
         ++$i;
     }
+
     //die(var_export($data));
     return $data;
 }
@@ -131,8 +129,7 @@ function get_bookingtime_jbisn($jbi_sn = "")
  * @param string $jbt_sn
  * @return array|void
  */
-function get_jill_booking_time($jbt_sn = "")
-{
+function get_jill_booking_time($jbt_sn = "") {
     global $xoopsDB;
     if (empty($jbt_sn)) {
         return;
@@ -140,6 +137,7 @@ function get_jill_booking_time($jbt_sn = "")
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking_time") . "` where `jbt_sn` = '{$jbt_sn}'";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = $xoopsDB->fetchArray($result);
+
     return $data;
 }
 
@@ -148,8 +146,7 @@ function get_jill_booking_time($jbt_sn = "")
  * @param string $single
  * @return mixed
  */
-function insert_jill_booking($single = "")
-{
+function insert_jill_booking($single = "") {
     global $xoopsDB, $xoopsUser;
     //取得使用者編號
     $uid  = $xoopsUser->uid();
@@ -173,6 +170,7 @@ function insert_jill_booking($single = "")
 
     //取得最後新增資料的流水編號
     $jb_sn = $xoopsDB->getInsertId();
+
     return $jb_sn;
 }
 
@@ -183,8 +181,7 @@ function insert_jill_booking($single = "")
  * @param string $single
  * @param string $jb_week
  */
-function insert_jill_booking_week($jb_sn = "", $jbt_sn = "", $single = "", $jb_week = "")
-{
+function insert_jill_booking_week($jb_sn = "", $jbt_sn = "", $single = "", $jb_week = "") {
     global $xoopsDB;
     if (empty($jbt_sn) || empty($jb_sn)) {
         return;
@@ -204,8 +201,7 @@ function insert_jill_booking_week($jb_sn = "", $jbt_sn = "", $single = "", $jb_w
  * @param string $jb_sn
  * @param string $single
  */
-function insert_jill_booking_date($jb_sn = "", $single = "")
-{
+function insert_jill_booking_date($jb_sn = "", $single = "") {
     global $xoopsDB, $xoopsUser;
     if (empty($jb_sn)) {
         return;
@@ -232,6 +228,7 @@ function insert_jill_booking_date($jb_sn = "", $single = "")
                 $xoopsDB->queryF($sql) or redirect_header($_SERVER['PHP_SELF'], 3, $sql);
             }
         }
+
         return $_POST['jbi_sn'];
     }
 }
@@ -242,22 +239,20 @@ function insert_jill_booking_date($jb_sn = "", $single = "")
  * @param string $jbt_sn
  * @return mixed
  */
-function jb_waiting_max_sort($jb_date = "", $jbt_sn = "")
-{
+function jb_waiting_max_sort($jb_date = "", $jbt_sn = "") {
     global $xoopsDB;
     $sql = "select max(`jb_waiting`) from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jb_date`='{$jb_date}' and `jbt_sn`=$jbt_sn ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($sort) = $xoopsDB->fetchRow($result);
+
     return ++$sort;
 }
-
 
 //刪除jill_booking某筆資料資料
 /**
  * @param string $jb_sn
  */
-function delete_jill_booking($jb_sn = "")
-{
+function delete_jill_booking($jb_sn = "") {
     global $xoopsDB, $isAdmin;
 
     if (empty($jb_sn)) {
@@ -272,8 +267,7 @@ function delete_jill_booking($jb_sn = "")
  * @return bool
  */
 //檢查是否具有預約權限
-function booking_perm($mode = "booking_group")
-{
+function booking_perm($mode = "booking_group") {
     global $xoopsUser, $xoopsModuleConfig;
     $can_booking = false;
     if ($xoopsUser) {
@@ -286,6 +280,7 @@ function booking_perm($mode = "booking_group")
             }
         }
     }
+
     return false;
 }
 
@@ -294,8 +289,7 @@ function booking_perm($mode = "booking_group")
  * @return int
  */
 //檢查日期格式
-function is_date($date)
-{
+function is_date($date) {
     if (preg_match("/^[12][0-9]{3}-([0][1-9])|([1][12])-([0][1-9])|([12][0-9])|([3][01])$/", $date)) {
         return 1;
     } else {
@@ -310,8 +304,7 @@ function is_date($date)
  * @param string $end_date
  * @return array
  */
-function getdateArr($seed_weekday = "", $start_date = "", $end_date = "")
-{
+function getdateArr($seed_weekday = "", $start_date = "", $end_date = "") {
     list($y, $m, $d) = explode("-", $start_date);
     $now = 0;
     $end = strtotime($end_date);
@@ -321,7 +314,8 @@ function getdateArr($seed_weekday = "", $start_date = "", $end_date = "")
         if (strpos($seed_weekday, (string)date('w', $now)) !== false) {
             $date_arr[] = date("Y-m-d", $now);
         }
-        $i++;
+        ++$i;
     }
+
     return $date_arr;
 }

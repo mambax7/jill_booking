@@ -6,14 +6,13 @@
 // ------------------------------------------------------------------------- //
 
 /*-----------引入檔案區--------------*/
-include "header.php";
+include __DIR__ . '/header.php';
 $xoopsOption['template_main'] = set_bootstrap("jill_booking_list.html");
 include_once XOOPS_ROOT_PATH . "/header.php";
 
 /*-----------功能函數區--------------*/
 //列出所有jill_booking資料
-function jill_booking_list()
-{
+function jill_booking_list() {
     global $xoopsDB, $xoopsTpl, $xoopsUser, $isAdmin;
     if (!$xoopsUser) {
         return;
@@ -30,7 +29,6 @@ function jill_booking_list()
     $total   = $PageBar['total'];
 
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
-
 
     $all_content = "";
     $i           = 0;
@@ -51,7 +49,7 @@ function jill_booking_list()
         $all_content[$i]['jb_booking_content'] = $jb_booking_content;
         $all_content[$i]['jb_start_date']      = $jb_start_date;
         $all_content[$i]['jb_end_date']        = $jb_end_date;
-        $i++;
+        ++$i;
     }
 
     //刪除確認的JS
@@ -61,7 +59,6 @@ function jill_booking_list()
     $xoopsTpl->assign('isAdmin', $isAdmin);
     $xoopsTpl->assign('all_content', $all_content);
     $xoopsTpl->assign('now_op', 'jill_booking_list');
-
 
     if (!file_exists(XOOPS_ROOT_PATH . "/modules/tadtools/sweet_alert.php")) {
         redirect_header("index.php", 3, _MD_NEED_TADTOOLS);
@@ -76,8 +73,7 @@ function jill_booking_list()
 /**
  * @param string $jb_sn
  */
-function delete_bookinglist($jb_sn = "")
-{
+function delete_bookinglist($jb_sn = "") {
     global $xoopsUser, $xoopsDB;
     if (empty($jb_sn)) {
         return;
@@ -101,7 +97,6 @@ function delete_bookinglist($jb_sn = "")
 $op    = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
 $jb_sn = empty($_REQUEST['jb_sn']) ? "" : (int)$_REQUEST['jb_sn'];
 
-
 switch ($op) {
     /*---判斷動作請貼在下方---*/
     case "delete_jill_booking":
@@ -111,11 +106,9 @@ switch ($op) {
         exit;
         break;
 
-
     default:
         jill_booking_list();
         break;
-
 
     /*---判斷動作請貼在上方---*/
 }

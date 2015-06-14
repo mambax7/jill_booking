@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------- //
 
 /*-----------引入檔案區--------------*/
-include "header.php";
+include __DIR__ . '/header.php';
 $xoopsOption['template_main'] = set_bootstrap("jill_booking_batch.html");
 include_once XOOPS_ROOT_PATH . "/header.php";
 
@@ -16,8 +16,7 @@ include_once XOOPS_ROOT_PATH . "/header.php";
 /**
  * @param string $jbi_sn
  */
-function jill_booking_form($jbi_sn = "")
-{
+function jill_booking_form($jbi_sn = "") {
     global $xoopsDB, $xoopsTpl;
     //場地設定
     $item_opt = get_jill_booking_time_options($jbi_sn);
@@ -78,8 +77,7 @@ function jill_booking_form($jbi_sn = "")
 }
 
 //批次寫入
-function bath_insert()
-{
+function bath_insert() {
     //XOOPS表單安全檢查
     if (!$GLOBALS['xoopsSecurity']->check()) {
         $error = implode("<br />", $GLOBALS['xoopsSecurity']->getErrors());
@@ -91,6 +89,7 @@ function bath_insert()
     }
     $sn['jb_sn']  = $jb_sn;
     $sn['jbi_sn'] = $_POST['jbi_sn'];
+
     return $sn;
 }
 
@@ -99,8 +98,7 @@ function bath_insert()
  * @param string $jb_sn
  * @param string $jbi_sn
  */
-function list_jill_booking($jb_sn = "", $jbi_sn = "")
-{
+function list_jill_booking($jb_sn = "", $jbi_sn = "") {
     global $xoopsDB, $xoopsTpl;
     if (empty($jb_sn)) {
         return;
@@ -134,7 +132,7 @@ function list_jill_booking($jb_sn = "", $jbi_sn = "")
             $dateweek[$i]['jbt_sn']    = $jb_weekArr['jbt_sn'];
             if (!empty($maxwaiting)) {
                 $waitingArr = get_jbwaiting($jb_weekArr['jbt_sn'], $date);
-                for ($j = 0; $j < $maxwaiting; $j++) {
+                for ($j = 0; $j < $maxwaiting; ++$j) {
                     $ok      = "<span style='color:#D44950'><i class='fa fa-check'></i></span>";
                     $jb_exit = 0;
                     if (!empty($waitingArr)) {
@@ -148,8 +146,8 @@ function list_jill_booking($jb_sn = "", $jbi_sn = "")
                         $dateweek[$i]['jb_exit']                = $jb_exit;
                     } else {
                         $dateweek[$i]['waitingArr'][0]['name'] = "<span style='color:#D44950'><i class='fa fa-check'></i></span>";
-//                      for ($j = 1; $j < $maxwaiting; $j++) {
-//                          $dateweek[$i]['waitingArr'][$j]['name'] = "";
+                        //                      for ($j = 1; $j < $maxwaiting; ++$j) {
+                        //                          $dateweek[$i]['waitingArr'][$j]['name'] = "";
                         for ($m = 1; $m < $maxwaiting; $m++) {
                             $dateweek[$i]['waitingArr'][$m]['name'] = '';
                         }
@@ -183,8 +181,7 @@ function list_jill_booking($jb_sn = "", $jbi_sn = "")
  * @param string $jb_date
  * @return string
  */
-function get_jbwaiting($jbt_sn = "", $jb_date = "")
-{
+function get_jbwaiting($jbt_sn = "", $jb_date = "") {
     global $xoopsDB;
     $sql = "select a.jb_waiting,b.jb_uid from `" . $xoopsDB->prefix("jill_booking_date") . "` as a
           join `" . $xoopsDB->prefix("jill_booking") . "` as b on a.jb_sn=b.jb_sn
@@ -198,6 +195,7 @@ function get_jbwaiting($jbt_sn = "", $jb_date = "")
         $data[$i]['name']       = XoopsUser::getUnameFromId($jb_uid, 1);
         ++$i;
     }
+
     return $data;
 }
 
@@ -208,14 +206,14 @@ function get_jbwaiting($jbt_sn = "", $jb_date = "")
  * @param string $str
  * @return mixed
  */
-function get_maxwaiting_byrange($jb_start_date = "", $jb_end_date = "", $str = "")
-{
+function get_maxwaiting_byrange($jb_start_date = "", $jb_end_date = "", $str = "") {
     global $xoopsDB;
     //die($str);
     $sql = "select max(`jb_waiting`) from `" . $xoopsDB->prefix("jill_booking_date") . "` where `jbt_sn` in({$str}) and (`jb_date` between '{$jb_start_date}' and '{$jb_end_date}' ) ";
     //die($sql);
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     list($max) = $xoopsDB->fetchRow($result);
+
     return $max;
 }
 
@@ -224,8 +222,7 @@ function get_maxwaiting_byrange($jb_start_date = "", $jb_end_date = "", $str = "
  * @param string $jb_sn
  * @return string|void
  */
-function get_booking_weekArr($jb_sn = "")
-{
+function get_booking_weekArr($jb_sn = "") {
     global $xoopsDB;
     if (empty($jb_sn)) {
         return;
@@ -245,6 +242,7 @@ function get_booking_weekArr($jb_sn = "")
         $data['jbt_sn']      = array_unique($data['jbt_sn']);
         ++$i;
     }
+
     return $data;
 }
 
@@ -253,7 +251,6 @@ $op     = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
 $jb_sn  = empty($_REQUEST['jb_sn']) ? "" : (int)$_REQUEST['jb_sn'];
 $jbt_sn = empty($_REQUEST['jbt_sn']) ? "" : (int)$_REQUEST['jbt_sn'];
 $jbi_sn = empty($_REQUEST['jbi_sn']) ? "" : (int)$_REQUEST['jbi_sn'];
-
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
@@ -270,21 +267,17 @@ switch ($op) {
         header("location:index.php?jbi_sn=$jbi_sn");
         break;
 
-
     case "list_jill_booking":
         list_jill_booking($jb_sn, $jbi_sn);
         break;
-
 
     case "jill_booking_form":
         jill_booking_form($jbt_sn, $jb_date);
         break;
 
-
     default:
         jill_booking_form($jbi_sn);
         break;
-
 
     /*---判斷動作請貼在上方---*/
 }

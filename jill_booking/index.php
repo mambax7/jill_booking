@@ -6,7 +6,7 @@
 // ------------------------------------------------------------------------- //
 
 /*-----------引入檔案區--------------*/
-include "header.php";
+include __DIR__ . '/header.php';
 $xoopsOption['template_main'] = set_bootstrap("jill_booking_index.html");
 include_once XOOPS_ROOT_PATH . "/header.php";
 
@@ -15,8 +15,7 @@ include_once XOOPS_ROOT_PATH . "/header.php";
  * @param string $jbi_sn
  * @param string $getdate
  */
-function booking_table($jbi_sn = "", $getdate = "")
-{
+function booking_table($jbi_sn = "", $getdate = "") {
     global $xoopsDB, $xoopsTpl, $xoopsUser, $can_booking, $can_cancel;
     $uid = !empty($xoopsUser) ? $xoopsUser->uid() : "";
     //場地設定
@@ -120,8 +119,7 @@ function booking_table($jbi_sn = "", $getdate = "")
  * @param string $getdate
  * @return string
  */
-function weekArr($getdate = "")
-{
+function weekArr($getdate = "") {
     if (!$getdate) {
         $getdate = date("Y-m-d");
     }
@@ -131,13 +129,15 @@ function weekArr($getdate = "")
     //一週開始日期
     $week_start = date("Y-m-d", strtotime("$getdate -" . $weekday . " days"));
     $week       = "";
-    for ($i = 0; $i <= 6; $i++) {
+    for ($i = 0; $i <= 6; ++$i) {
         $week[$i]['d'] = date("Y-m-d", strtotime("$week_start +" . $i . " days"));
         $cweek         = array(_MD_JILLBOOKIN_W0, _MD_JILLBOOKIN_W1, _MD_JILLBOOKIN_W2, _MD_JILLBOOKIN_W3, _MD_JILLBOOKIN_W4, _MD_JILLBOOKIN_W5, _MD_JILLBOOKIN_W6);
         if (in_array(date("w", strtotime($week[$i]['d'])), array_keys($cweek))) {
+//      if (array_key_exists(date("w", strtotime($week[$i]['d'])), array_keys($cweek))) {
             $week[$i]['w'] = $cweek[$i];
         }
     }
+
     //die(var_export($week));
     return $week;
 }
@@ -151,8 +151,7 @@ function weekArr($getdate = "")
  * @param string $jbi_sn
  * @return string|void
  */
-function delete_booking_icon($t = "", $wk = "", $jbt_sn = "", $jb_date = "", $jbi_sn = "")
-{
+function delete_booking_icon($t = "", $wk = "", $jbt_sn = "", $jb_date = "", $jbi_sn = "") {
     global $xoopsUser;
     if (!isset($xoopsUser)) {
         return;
@@ -165,6 +164,7 @@ function delete_booking_icon($t = "", $wk = "", $jbt_sn = "", $jb_date = "", $jb
     }
 
     $icon = "{$uid_name}<a href=\"javascript:delete_booking({$t} , {$wk} , {$jbt_sn},'{$jb_date}',{$jbi_sn});\" style='color:#D44950;' ><i class='fa fa-times' ></i></a>";
+
     return $icon;
 }
 
@@ -174,8 +174,7 @@ function delete_booking_icon($t = "", $wk = "", $jbt_sn = "", $jb_date = "", $jb
  * @param string $jb_date
  * @return string
  */
-function booking_users($jbt_sn = "", $jb_date = "")
-{
+function booking_users($jbt_sn = "", $jb_date = "") {
     global $xoopsDB, $xoopsModule;
 
     $sql = "select a.`jb_waiting`,c.`name`
@@ -199,6 +198,7 @@ function booking_users($jbt_sn = "", $jb_date = "")
         $users .= "</ol>";
         $usershtml = "<a href='#' class='users' data-toggle='popover' data-content='{$users}' ><i class='fa fa-exclamation'></i></a>";
     }
+
     return $usershtml;
 }
 
@@ -208,8 +208,7 @@ function booking_users($jbt_sn = "", $jb_date = "")
  * @param string $jb_date
  * @return array|void
  */
-function get_bookingArr($jbt_sn = "", $jb_date = "")
-{
+function get_bookingArr($jbt_sn = "", $jb_date = "") {
     global $xoopsDB, $xoopsUser, $can_cancel, $isAdmin;
     if (!isset($xoopsUser)) {
         return;
@@ -222,6 +221,7 @@ function get_bookingArr($jbt_sn = "", $jb_date = "")
     //die($sql);
     $result = $xoopsDB->query($sql) || redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $data = $xoopsDB->fetchArray($result);
+
     //die(var_export($data));
     return $data;
 }
@@ -232,8 +232,7 @@ function get_bookingArr($jbt_sn = "", $jb_date = "")
  * @param string $jb_date
  * @param string $jbi_sn
  */
-function delete_booking($jbt_sn = "", $jb_date = "", $jbi_sn = "")
-{
+function delete_booking($jbt_sn = "", $jb_date = "", $jbi_sn = "") {
     global $xoopsDB, $isAdmin;
     if (empty($jbt_sn) || empty($jb_date)) {
         return;
@@ -254,8 +253,7 @@ function delete_booking($jbt_sn = "", $jb_date = "", $jbi_sn = "")
  * @param string $jb_date
  * @param string $jbt_sn
  */
-function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "")
-{
+function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "") {
     global $xoopsDB, $isAdmin;
 
     if (empty($jb_sn) || empty($jb_date) || empty($jbt_sn)) {
@@ -276,9 +274,9 @@ function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "")
             $$k = $v;
         }
         if ($jb_waiting > $seed_waiting) {
-//            $jb_waiting = $jb_waiting-1;
+            //            $jb_waiting = $jb_waiting-1;
             --$jb_waiting;
-            $sql        = "update " . $xoopsDB->prefix("jill_booking_date") . " set `jb_waiting`='{$jb_waiting}' where `jb_sn`='{$jb_sn}' and `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}' ";
+            $sql = "update " . $xoopsDB->prefix("jill_booking_date") . " set `jb_waiting`='{$jb_waiting}' where `jb_sn`='{$jb_sn}' and `jb_date`='{$jb_date}' and `jbt_sn` = '{$jbt_sn}' ";
             $xoopsDB->queryF($sql) || die(_TAD_SORT_FAIL . " (" . date("Y-m-d H:i:s") . ")" . $sql);
         }
     }
@@ -290,8 +288,7 @@ function delete_jill_booking_date($jb_sn = "", $jb_date = "", $jbt_sn = "")
  * @param string $jb_date
  * @param string $jbt_sn
  */
-function delete_jill_booking_week($jb_sn = "", $jb_date = "", $jbt_sn = "")
-{
+function delete_jill_booking_week($jb_sn = "", $jb_date = "", $jbt_sn = "") {
     global $xoopsDB, $isAdmin;
 
     if (empty($jb_sn) || empty($jb_date) || empty($jbt_sn)) {
@@ -308,7 +305,6 @@ function delete_jill_booking_week($jb_sn = "", $jb_date = "", $jbt_sn = "")
 $op     = empty($_REQUEST['op']) ? "" : $_REQUEST['op'];
 $jbt_sn = empty($_REQUEST['jbt_sn']) ? "" : (int)$_REQUEST['jbt_sn'];
 $jbi_sn = empty($_REQUEST['jbi_sn']) ? "" : (int)$_REQUEST['jbi_sn'];
-
 
 switch ($op) {
     /*---判斷動作請貼在下方---*/
@@ -347,7 +343,6 @@ switch ($op) {
     default:
         booking_table($jbi_sn);
         break;
-
 
     /*---判斷動作請貼在上方---*/
 }

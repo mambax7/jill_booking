@@ -22,7 +22,6 @@ if ($xoopsUser) {
     $interface_menu[_MD_JILLBOOKIN_SMNAME3] = "list.php";
 }
 
-
 if ($isAdmin) {
     $interface_menu[_TAD_TO_ADMIN] = "admin/main.php";
 }
