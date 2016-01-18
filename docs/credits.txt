@@ -1,0 +1,4 @@
+Credits
+=============
+
+This module has been originally developed by Jillian ('tnjaile@gmail.com') from XOOPS Taiwan
