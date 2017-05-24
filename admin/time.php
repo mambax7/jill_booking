@@ -30,7 +30,7 @@ function jill_booking_time_max_sort($jbi_sn = '') {
 function insert_jill_booking_time() {
     global $xoopsDB;
 
-    $myts               =& MyTextSanitizer::getInstance();
+    $myts               = MyTextSanitizer::getInstance();
     $_POST['jbt_title'] = $myts->addSlashes($_POST['jbt_title']);
     $week               = implode(',', $_POST['jbt_week']);
 
@@ -74,7 +74,7 @@ function list_jill_booking_time($jbi_sn = '') {
     include_once XOOPS_ROOT_PATH . '/modules/tadtools/jeditable.php';
     $jeditable = new jeditable();
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
     $sql  = "select * from `" . $xoopsDB->prefix('jill_booking_time') . "` where `jbi_sn`='$jbi_sn' order by `jbt_sort`";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
     $total       = $xoopsDB->getRowsNum($result);
@@ -262,7 +262,7 @@ function change_enable($jbt_sn = '', $week = '') {
  */
 function save_jbt_title($jbt_sn) {
     global $xoopsDB, $xoopsTpl;
-    $myts      =& MyTextSanitizer::getInstance();
+    $myts      = MyTextSanitizer::getInstance();
     $jbt_title = $myts->addSlashes($_POST['value']);
     $sql       = 'update `' . $xoopsDB->prefix('jill_booking_time') . "` set `jbt_title` = '{$jbt_title}'
   where `jbt_sn` = '$jbt_sn'";

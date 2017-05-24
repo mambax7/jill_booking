@@ -26,7 +26,7 @@ function jill_booking_item_form($jbi_sn = '') {
     }
 
     //預設值設定
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
 
     //設定 jbi_sn 欄位的預設值
     $jbi_sn = !isset($DBV['jbi_sn']) ? $jbi_sn : $DBV['jbi_sn'];
@@ -117,7 +117,7 @@ function insert_jill_booking_item() {
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
-    $myts               =& MyTextSanitizer::getInstance();
+    $myts               = MyTextSanitizer::getInstance();
     $_POST['jbi_start'] = $myts->addSlashes($_POST['jbi_start']);
     $_POST['jbi_end']   = $myts->addSlashes($_POST['jbi_end']);
     $_POST['jbi_title'] = $myts->addSlashes($_POST['jbi_title']);
@@ -151,7 +151,7 @@ function update_jill_booking_item($jbi_sn = '') {
         redirect_header($_SERVER['PHP_SELF'], 3, $error);
     }
 
-    $myts               =& MyTextSanitizer::getInstance();
+    $myts               = MyTextSanitizer::getInstance();
     $_POST['jbi_start'] = $myts->addSlashes($_POST['jbi_start']);
     $_POST['jbi_end']   = $myts->addSlashes($_POST['jbi_end']);
     $_POST['jbi_title'] = $myts->addSlashes($_POST['jbi_title']);
@@ -197,7 +197,7 @@ function show_one_jill_booking_item($jbi_sn = '') {
         $jbi_sn = (int)($jbi_sn);
     }
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
 
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking_item") . "` where `jbi_sn` = '{$jbi_sn}' ";
     $result = $xoopsDB->query($sql) or redirect_header($_SERVER['PHP_SELF'], 3, mysql_error());
@@ -244,7 +244,7 @@ function show_one_jill_booking_item($jbi_sn = '') {
 function list_jill_booking_item() {
     global $xoopsDB, $xoopsTpl, $isAdmin;
 
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
 
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking_item") . "` order by `jbi_sort`";
 

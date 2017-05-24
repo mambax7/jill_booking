@@ -18,7 +18,7 @@ function jill_booking_list() {
         return;
     }
     $uid  = $xoopsUser->uid();
-    $myts =& MyTextSanitizer::getInstance();
+    $myts = MyTextSanitizer::getInstance();
 
     $sql = "select * from `" . $xoopsDB->prefix("jill_booking") . "` where `jb_uid`='{$uid}' order by `jb_booking_time` desc ";
     //die($sql);
